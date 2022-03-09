@@ -1,0 +1,16 @@
+{% extends 'mycv/index_base.html' %}
+
+{% block title_block %}Experience{% endblock %}
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form method="post" action="" class="form">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

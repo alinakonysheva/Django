@@ -1,0 +1,43 @@
+{% extends 'mycv/index_base.html' %}
+
+{% block title_block %}Home{% endblock %}
+{% block main_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Most used</h3>
+        </div>
+    </div>
+
+    {% if items %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <th></th>
+                    <th>Name</th>
+                </thead>
+                <tfoot>
+                    <th></th>
+                    <th>From</th>
+                </tfoot>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td><a href="{% url 'mycv:do_skill' item.id %}">{{item.id}}</a></td>
+                        <td>{{item.name}}</td>                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    {% else %}
+    <div class="space"></div>
+    <div class="row"><div class="col">Nothing in database</div></div>
+    {% endif %}
+</div>
+
+{% endblock %}

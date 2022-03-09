@@ -1,0 +1,45 @@
+{% extends 'mycv/index_base.html' %}
+
+{% block title_block %}{% endblock %}
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Skills</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="{% url 'mycv:do_skill_add' %}">Add Skill</a>
+        </div>
+    </div>
+    {% if skills %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <th></th>
+                    <th>Name</th>
+                </thead>
+                <tfoot>
+                    <th></th>
+                    <th>Name</th>
+                </tfoot>
+                <tbody>
+                    {% for skill in skills %}
+                    <tr>
+                        <td><a href="{% url 'mycv:do_skill' skill.id %}">{{skill.id}}</a></td>
+                        <td>{{skill.name}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    {% else %}
+    <div class="space"></div>
+    <div class="row"><div class="col">No Skills in database</div></div>
+    {% endif %}
+</div>
+{% endblock %}

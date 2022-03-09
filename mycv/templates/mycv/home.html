@@ -1,0 +1,57 @@
+{% extends 'mycv/index_base.html' %}
+
+{% block title_block %}Home{% endblock %}
+{% block main_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Resume</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-primary" href="{% url 'mycv:do_experience_add' %}">Add Experience</a>
+        </div>
+    </div>
+
+    {% if resume_items %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <th></th>
+                    <th>From</th>
+                    <th>Till</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                </thead>
+                <tfoot>
+                    <th></th>
+                    <th>From</th>
+                    <th>Till</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                </tfoot>
+                <tbody>
+                    {% for item in resume_items %}
+                    <tr>
+                        <td><a href="{% url 'mycv:do_experience' item.id %}">{{item.id}}</a></td>
+                        <td>{{item.date_from}}</td>
+                        <td>{{item.date_till}}</td>
+                        <td>{{item.company}}</td>
+                        <td>{{item.title}}</td>                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    {% else %}
+    <div class="space"></div>
+    <div class="row"><div class="col">No experiences in database</div></div>
+    {% endif %}
+</div>
+
+{% endblock %}
